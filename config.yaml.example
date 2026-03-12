@@ -1,0 +1,88 @@
+# SuperRecord Workspace Configuration
+# Copy this file to config.yaml and customize for your setup.
+# Agent reads this file to configure its behavior.
+
+# ─── Recording Source ────────────────────────────────────────
+
+source:
+  type: voice_memos                    # voice_memos | manual
+  voice_memos_db: ~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings/CloudRecordings.db
+  recordings_dir: ~/Library/Group Containers/group.com.apple.VoiceMemos.shared/Recordings
+  inbox_dir: inbox/                    # Drop folder for external audio files
+  inbox_extensions:                    # Recognized audio extensions in inbox
+    - .m4a
+    - .mp3
+    - .wav
+    - .ogg
+    - .flac
+    - .webm
+
+# ─── Defaults ────────────────────────────────────────────────
+
+target_language: ko                    # Translation target language (ISO 639-1)
+default_pipeline: full                 # Default processing scope
+#   asr_only:      Transcription only
+#   asr_translate: Transcription + Translation
+#   notes:         Transcription + Translation + Lecture notes
+#   full:          Transcription + Translation + Lecture notes + Material linking
+
+# ─── ASR Settings ────────────────────────────────────────────
+
+asr:
+  provider: dashscope                  # ASR provider
+  models:                              # Fallback order (next model on quota exhaustion)
+    - qwen3-asr-flash-filetrans
+    - qwen3-asr-flash-filetrans-2025-11-17
+    - fun-asr
+  endpoint: intl                       # intl | china
+  poll_interval: 10                    # Polling interval (seconds)
+  poll_timeout: 3600                   # Polling timeout (seconds)
+
+# ─── LLM Settings ────────────────────────────────────────────
+
+llm:
+  provider: anthropic                  # LLM for notes/translation
+  model: claude-sonnet-4-20250514          # Model name
+  # provider: openai
+  # model: gpt-4o
+
+# ─── Material Extraction ─────────────────────────────────────
+
+extraction:
+  engine: docling                      # PDF/PPTX extraction engine
+  vlm_model: granite_docling           # VLM model (images/complex layouts)
+  image_description: true              # Auto-generate image descriptions
+
+# ─── OSS Settings ────────────────────────────────────────────
+# Created during Agent-guided init (see AGENTS.md Init Step 4)
+
+oss:
+  bucket: your-bucket-name             # Your OSS bucket name
+  endpoint: oss-ap-southeast-1.aliyuncs.com
+  prefix: superrecord
+  signed_url_ttl: 86400               # Signed URL TTL (seconds)
+
+# ─── Semester ────────────────────────────────────────────────
+
+current_semester: "2025-1"
+
+# ─── Registered Courses ──────────────────────────────────────
+# Agent uses this list to auto-detect courses from recording titles.
+# New courses are added automatically during interactive classification.
+#
+# Example:
+#
+# courses:
+#   linear-algebra:
+#     name: Linear Algebra
+#     aliases: ["linear algebra", "lin alg", "선형대수"]
+#     language: en
+#     semester: "2025-1"
+#
+#   operating-systems:
+#     name: Operating Systems
+#     aliases: ["operating systems", "OS", "운영체제"]
+#     language: en
+#     semester: "2025-1"
+
+courses: {}
