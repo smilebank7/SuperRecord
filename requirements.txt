@@ -1,0 +1,6 @@
+requests>=2.31
+oss2>=2.18
+markdown>=3.5
+weasyprint>=60.0
+docling>=2.0
+pyyaml>=6.0
