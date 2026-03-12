@@ -95,7 +95,7 @@ SuperRecordは、講義の録音と参考資料（PDF、スライド、画像）
 
 ```bash
 # 1. リポジトリをクローン
-git clone https://github.com/your-username/SuperRecord.git
+git clone https://github.com/smilebank7/SuperRecord.git
 cd SuperRecord
 
 # 2. Python環境のセットアップ

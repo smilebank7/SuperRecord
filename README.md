@@ -95,7 +95,7 @@ The agent tracks every recording's pipeline state in `registry.md`, so interrupt
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/your-username/SuperRecord.git
+git clone https://github.com/smilebank7/SuperRecord.git
 cd SuperRecord
 
 # 2. Set up Python environment
